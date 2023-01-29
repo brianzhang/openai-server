@@ -5,5 +5,9 @@ const configuration = new Configuration({
   apiKey: config.SK,
 });
 const openai = new OpenAIApi(configuration);
-const response = await openai.listEngines();
-console.log(response.data);
+const completion = await openai.createCompletion({
+  model: "text-davinci-002",
+  prompt: "Hello world",
+});
+
+console.log(completion.data.choices[0].text);
